@@ -2,15 +2,18 @@ import openpyxl
 import os
 
 dirs = os.listdir(".")
-filename = ""
+filename = "未找到基站文件"
 
 print("文件夹下所有文件列表:", dirs)
 for i in dirs:
-    if i[:-5] == ".xlsx" or i[:-4] == ".xls":
+    #print("i:"+i+"   ++++"+i[-5:] , i[-4:] )
+    if i[-5:] == ".xlsx" or i[-4:] == ".xls":
         filename = i
         break
 
-    filename = i
+if filename=="未找到基站文件":
+    print("没找到基站文件") 
+    exit()
 print("基站文件找到了："+("./"+filename))
 
 wb = openpyxl.load_workbook("./"+filename)
@@ -24,13 +27,20 @@ for sheet in wb:
     print("正在处理：", "="*10, sheet.title, "="*10, "工作表最大列数:",
           wb[sheet.title].max_column, "="*10, "工作表最大行数:", wb[sheet.title].max_row, "="*10)
     #print(sheet.max_column,"="*10,sheet[1])
+    cellIDcolumn_letter="-1"
     for cellx in sheet[1]:
         if cellx.value =="CellID":
             print("值",cellx.value,end = "   ")
             print("数字列标",cellx.column,end = "\n")
-            cellIDcolumn = cellx.column
-            print(cellx.column)
-    '''       print("值",cellx.value,end = "   ")
+            cellIDcolumn_letter = cellx.column_letter
+            break
+    if cellIDcolumn_letter=="-1":
+        print("文件：",filename,"不是基站文件")
+        exit()
+    print("值",cellIDcolumn_letter,end = "   ")
+    for jizhanID in sheet[cellIDcolumn_letter]:
+        print("基站ID:",jizhanID.value)
+'''       print("值",cellx.value,end = "   ")
         
         print("字母列标",cellx.column_letter,end = "   ")
         print("行号",cellx.row,end = "   ")

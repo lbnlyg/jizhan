@@ -20,7 +20,8 @@ wb = openpyxl.load_workbook("./"+filename)
 # 显示所有表名
 print("工作表列表:", wb.sheetnames)
 
-filejztxt = open("jztxt", "w+")
+filejztxt = open("jztxt.txt", "w+")
+filejztxt.write('cellID'+"\n")
 # 遍历所有表
 for sheet in wb:
     sheettitle = sheet.title
@@ -37,11 +38,12 @@ for sheet in wb:
     if cellIDcolumn_letter=="-1":
         print("文件：",filename,"不是基站文件")
         exit()
-    print("值",cellIDcolumn_letter,end = "   ")
+    print("值",cellIDcolumn_letter,end = " \n  ")
     for jizhanID in sheet[cellIDcolumn_letter]:
+        if jizhanID.value =="CellID" :
+            continue
+        filejztxt.write(str(jizhanID.value)+"\n")
         print("基站ID:",jizhanID.value)
-'''       print("值",cellx.value,end = "   ")
+filejztxt.close
+
         
-        print("字母列标",cellx.column_letter,end = "   ")
-        print("行号",cellx.row,end = "   ")
-        print("坐标",cellx.coordinate,end = "\n")'''

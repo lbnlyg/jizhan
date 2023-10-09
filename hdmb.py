@@ -43,7 +43,7 @@ for sheet in wb:
         if jizhanID.value =="CellID" :
             continue
         filejztxt.write(str(jizhanID.value)+"\n")
-        print("基站ID:",jizhanID.value)
+        #print("基站ID:",jizhanID.value)
 filejztxt.close
 
         

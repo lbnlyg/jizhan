@@ -1,5 +1,24 @@
 import openpyxl
 import os
+import tkinter as tk
+from tkinter import filedialog
+
+def test1():
+    root = tk.Tk()
+    root.withdraw()
+    # 选择文件夹
+    Folderpath = filedialog.askdirectory()
+    # 选择文件
+    Filepath = filedialog.askopenfilename()
+    # 打印文件夹路径
+    print('Folderpath:', Folderpath)
+    # 打印文件路径
+    print('Filepath:', Filepath)
+
+if __name__ == '__main__':
+    test1()
+
+
 #基站模板管理
 dirs = os.listdir(".")
 filename = "未找到基站文件"
@@ -32,13 +51,13 @@ for sheet in wb:
     for cellx in sheet[1]:
         if cellx.value =="CellID":
             print("值",cellx.value,end = "   ")
-            print("数字列标",cellx.column,end = "\n")
+            print("数字列标",cellx.column,end = "")
             cellIDcolumn_letter = cellx.column_letter
             break
     if cellIDcolumn_letter=="-1":
         print("文件：",filename,"不是基站文件")
         exit()
-    print("值",cellIDcolumn_letter,end = " \n  ")
+    print("  值",cellIDcolumn_letter,end = " \n  ")
     for jizhanID in sheet[cellIDcolumn_letter]:
         if jizhanID.value =="CellID" :
             continue

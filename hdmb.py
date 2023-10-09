@@ -3,39 +3,42 @@ import os
 import tkinter as tk
 from tkinter import filedialog
 
+filename =""
 def test1():
     root = tk.Tk()
     root.withdraw()
     # 选择文件夹
-    Folderpath = filedialog.askdirectory()
+   # Folderpath = filedialog.askdirectory()
     # 选择文件
     Filepath = filedialog.askopenfilename()
     # 打印文件夹路径
-    print('Folderpath:', Folderpath)
+    #print('Folderpath:', Folderpath)
     # 打印文件路径
     print('Filepath:', Filepath)
+    filename = Filepath   
+    print('Filename:', filename) 
 
 if __name__ == '__main__':
     test1()
 
-
 #基站模板管理
-dirs = os.listdir(".")
-filename = "未找到基站文件"
+# dirs = os.listdir(".")
+# filename = "未找到基站文件"
 
-print("文件夹下所有文件列表:", dirs)
-for i in dirs:
-    #print("i:"+i+"   ++++"+i[-5:] , i[-4:] )
-    if i[-5:] == ".xlsx" or i[-4:] == ".xls":
-        filename = i
-        break
+# print("文件夹下所有文件列表:", dirs)
+# for i in dirs:
+#     #print("i:"+i+"   ++++"+i[-5:] , i[-4:] )
+#     if i[-5:] == ".xlsx" or i[-4:] == ".xls":
+#         filename = i
+#         break
 
-if filename=="未找到基站文件":
-    print("没找到基站文件") 
-    exit()
+# if filename=="未找到基站文件":
+#     print("没找到基站文件") 
+#     exit()`
+print('Filename:', filename) 
 print("基站文件找到了："+("./"+filename))
 
-wb = openpyxl.load_workbook("./"+filename)
+wb = openpyxl.load_workbook(filename)
 # 显示所有表名
 print("工作表列表:", wb.sheetnames)
 

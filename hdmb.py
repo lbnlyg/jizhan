@@ -5,12 +5,11 @@ from tkinter import filedialog
 
 filename =""
 def askfile():
+     global filename
     # 从本地选择一个文件，并返回文件的目录
-    filename = tkinter.filedialog.askopenfilename()
-    if filename != '':
-         lb.config(text= filename)
-    else:
-         lb.config(text='您没有选择任何文件')
+     filename = filedialog.askopenfilename()
+     
+
 root_window =tk.Tk()
 # 设置窗口title
 root_window.title('C语言中文网：c.biancheng.net')
@@ -24,7 +23,8 @@ text.pack()
 #添加一个字符输入控件
 entry=tk.Entry(root_window,text="请输入字符")
 entry.pack()
-btn=tk.Button(root_window,text='选择文件',relief=RAISED,command=askfile)
+btn=tk.Button(root_window,text='选择文件',command=askfile)
+btn.pack()
 # 添加按钮，以及按钮的文本，并通过command 参数设置关闭窗口的功能
 button=tk.Button(root_window,text="关闭",command=root_window.quit)
 # 将按钮放置在主窗口内
@@ -41,7 +41,7 @@ root_window.mainloop()
     # 打印文件路径
 
 #基站模板管理
-filename = ""  
+
 
 print("基站文件为：  "+(filename))
 

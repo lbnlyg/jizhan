@@ -35,7 +35,7 @@ print('Filename:', filename)
 #     print("没找到基站文件") 
 #     exit()`
 print('Filename:', filename) 
-print("基站文件找到了："+("./"+filename))
+print("基站文件为：  "+(filename))
 
 wb = openpyxl.load_workbook(filename)
 # 显示所有表名

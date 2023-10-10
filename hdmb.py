@@ -5,14 +5,17 @@ from tkinter import filedialog
 
 filename =""
 def askfile():
-     global filename
+    global filename
     # 从本地选择一个文件，并返回文件的目录
-     filename = filedialog.askopenfilename()
-     
+    filename = filedialog.askopenfilename()
+    if filename != '':
+         lb.config(text= filename)
+    else:
+         lb.config(text='您没有选择任何文件')
 
 root_window =tk.Tk()
 # 设置窗口title
-root_window.title('C语言中文网：c.biancheng.net')
+root_window.title('政务短信处理助手')
 # 设置窗口大小:宽x高,注,此处不能为 "*",必须使用 "x"
 root_window.geometry('450x300')
 
@@ -29,21 +32,16 @@ btn.pack()
 button=tk.Button(root_window,text="关闭",command=root_window.quit)
 # 将按钮放置在主窗口内
 button.pack(side="bottom")
-#进入主循环，显示主窗口
-root_window.mainloop()
-#root.withdraw()
-    # 选择文件夹
-   # Folderpath = filedialog.askdirectory()
-    # 选择文件
-#Filepath = filedialog.askopenfilename()
-    # 打印文件夹路径
-    #print('Folderpath:', Folderpath)
-    # 打印文件路径
+
+lb = tk.Label(root_window,text='',bg='#87CEEB')
+lb.pack()
 
 #基站模板管理
-
-
-print("基站文件为：  "+(filename))
+#c=tk.Label(root_window,text="基站文件为：  "+filename,bg="yellow",fg="red",font=('Times', 20, 'bold italic'))
+#c.pack()
+#进入主循环，显示主窗口
+root_window.mainloop()
+print("基站文件为：  "+filename)
 
 wb = openpyxl.load_workbook(filename)
 # 显示所有表名
@@ -65,7 +63,7 @@ for sheet in wb:
             cellIDcolumn_letter = cellx.column_letter
             break
     if cellIDcolumn_letter=="-1":
-        print("文件：",filename,"不是基站文件")
+        print("文件：",filename,"不是基站文件工作表")
         exit()
     print("  值",cellIDcolumn_letter,end = " \n  ")
     for jizhanID in sheet[cellIDcolumn_letter]:

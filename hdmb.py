@@ -4,22 +4,21 @@ import tkinter as tk
 from tkinter import filedialog
 
 filename =""
-def test1():
-    root = tk.Tk()
-    root.withdraw()
+
+root = tk.Tk()
+root.withdraw()
     # 选择文件夹
    # Folderpath = filedialog.askdirectory()
     # 选择文件
-    Filepath = filedialog.askopenfilename()
+Filepath = filedialog.askopenfilename()
     # 打印文件夹路径
     #print('Folderpath:', Folderpath)
     # 打印文件路径
-    print('Filepath:', Filepath)
-    filename = Filepath   
-    print('Filename:', filename) 
+print('Filepath:', Filepath)
+filename = Filepath   
+print('Filename:', filename) 
 
-if __name__ == '__main__':
-    test1()
+
 
 #基站模板管理
 # dirs = os.listdir(".")

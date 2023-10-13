@@ -14,8 +14,11 @@ def askfile():
          lb.config(text='您没有选择任何文件')
 
 root_window =tk.Tk()
+root_window.iconbitmap("tubiao.ico")
 # 设置窗口title
 root_window.title('政务短信处理助手')
+
+
 # 设置窗口大小:宽x高,注,此处不能为 "*",必须使用 "x"
 root_window.geometry('450x300')
 
